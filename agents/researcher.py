@@ -1,15 +1,10 @@
-from crewai import Agent, LLM
+from crewai import Agent
 from tools.search_tool import SearchTool
-from config.settings import settings
+from agents.llm_factory import build_llm
 
 
 def create_researcher_agent() -> Agent:
-    llm = LLM(
-        model=f"groq/{settings.GROQ_MODEL}",
-        api_key=settings.GROQ_API_KEY,
-        temperature=0.3
-    )
-
+    llm = build_llm(temperature=0.3)
     search_tool = SearchTool()
 
     return Agent(

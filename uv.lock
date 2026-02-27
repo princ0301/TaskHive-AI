@@ -486,6 +486,9 @@ wheels = [
 ]
 
 [package.optional-dependencies]
+litellm = [
+    { name = "litellm" },
+]
 tools = [
     { name = "crewai-tools" },
 ]
@@ -1632,7 +1635,7 @@ name = "multi-agent-system"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
-    { name = "crewai", extra = ["tools"] },
+    { name = "crewai", extra = ["litellm", "tools"] },
     { name = "langchain-groq" },
     { name = "litellm" },
     { name = "pydantic" },
@@ -1642,7 +1645,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "crewai", extras = ["tools"], specifier = ">=1.6.1" },
+    { name = "crewai", extras = ["litellm", "tools"], specifier = ">=1.6.1" },
     { name = "langchain-groq", specifier = ">=1.1.2" },
     { name = "litellm", specifier = ">=1.81.16" },
     { name = "pydantic", specifier = ">=2.12.5" },

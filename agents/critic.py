@@ -1,13 +1,9 @@
-from crewai import Agent, LLM
-from config.settings import settings
+from crewai import Agent
+from agents.llm_factory import build_llm
 
 
 def create_critic_agent() -> Agent:
-    llm = LLM(
-        model=f"groq/{settings.GROQ_MODEL}",
-        api_key=settings.GROQ_API_KEY,
-        temperature=0.1
-    )
+    llm = build_llm(temperature=0.1)
 
     return Agent(
         role="Critical Fact Checker & Editor",

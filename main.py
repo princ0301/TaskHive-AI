@@ -8,7 +8,7 @@ def save_report(topic: str, report: str):
     os.makedirs("outputs", exist_ok=True)
     filename = topic.lower().replace(" ", "_")[:50] + "_report.md"
     filepath = os.path.join("outputs", filename)
-    with open(filepath, "w") as f:
+    with open(filepath, "w", encoding="utf-8") as f:
         f.write(report)
     print(f"\n✅ Report saved to: {filepath}")
     return filepath
