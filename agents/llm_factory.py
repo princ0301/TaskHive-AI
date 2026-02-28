@@ -2,6 +2,14 @@ from crewai import LLM
 from config.settings import settings
 
 
+def _normalize_ollama_base_url(url: str) -> str:
+    
+    base = (url or "").rstrip("/")
+    if base.endswith("/api"):
+        return base[: -len("/api")]
+    return base
+
+
 def build_llm(temperature: float = 0.3) -> LLM:
     """
     Build LLM based on the configured provider.
@@ -26,7 +34,7 @@ def build_ollama_llm(temperature: float) -> LLM:
     """Build Ollama LLM configuration."""
     llm_kwargs = {
         "model": f"ollama/{settings.OLLAMA_MODEL}",
-        "base_url": settings.OLLAMA_BASE_URL,
+        "base_url": _normalize_ollama_base_url(settings.OLLAMA_BASE_URL),
         "temperature": temperature,
     }
 
