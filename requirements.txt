@@ -1,0 +1,9 @@
+crewai[litellm,tools]
+fastapi
+uvicorn
+litellm
+pydantic
+pydantic-settings
+requests
+sqlalchemy
+streamlit

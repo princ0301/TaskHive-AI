@@ -1,13 +1,14 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    LLM_PROVIDER: str = "ollama"  # Options: "groq", "ollama", "openrouter"
+    LLM_PROVIDER: str = "groq"  # Options: "groq", "ollama", "openrouter"
      
     GROQ_API_KEY: str = ""
     GROQ_MODEL: str = "meta-llama/llama-4-scout-17b-16e-instruct"
      
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "gpt-oss-120b"
+    OLLAMA_API_KEY: str = ""
      
     SERPER_API_KEY: str = ""
  

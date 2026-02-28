@@ -24,10 +24,18 @@ def build_llm(temperature: float = 0.3) -> LLM:
 
 def build_ollama_llm(temperature: float) -> LLM:
     """Build Ollama LLM configuration."""
+    llm_kwargs = {
+        "model": f"ollama/{settings.OLLAMA_MODEL}",
+        "base_url": settings.OLLAMA_BASE_URL,
+        "temperature": temperature,
+    }
+
+    # Some hosted Ollama-compatible endpoints require auth.
+    if settings.OLLAMA_API_KEY:
+        llm_kwargs["api_key"] = settings.OLLAMA_API_KEY
+
     return LLM(
-        model=f"ollama/{settings.OLLAMA_MODEL}",
-        base_url=settings.OLLAMA_BASE_URL,
-        temperature=temperature,
+        **llm_kwargs,
     )
 
 
@@ -44,4 +52,3 @@ def build_groq_llm(temperature: float) -> LLM:
         max_retries=3,
         timeout=120,
     )
-
